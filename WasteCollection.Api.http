@@ -1,0 +1,6 @@
+@WasteCollection.Api_HostAddress = http://localhost:5150
+
+GET {{WasteCollection.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
