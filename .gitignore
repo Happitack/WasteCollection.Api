@@ -1,0 +1,43 @@
+# === Ignore Visual Studio Code specific files ===
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# === Ignore Visual Studio specific files ===
+.vs/
+*.sln.docstates
+*.suo
+*.user
+
+# === Ignore Build output ===
+**/[Bb]in/
+**/[Oo]bj/
+
+# === Ignore NuGet packages folder ===
+**/[Pp]ackages/
+
+# === Ignore Log files ===
+*.log
+logs/
+
+# === Ignore Runtime files ===
+*.runtimeconfig.dev.json
+
+# === Ignore OS generated files ===
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Linux
+*~
+
+# === Ignore sensitive files ===
+secrets.json
+appsettings.Development.json
