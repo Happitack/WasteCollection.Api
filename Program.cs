@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using WasteCollection.Api.Data;
+using WasteCollection.Api.Interfaces;
+using WasteCollection.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IMessagePublisher, RabbitMqPublisher>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
