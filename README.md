@@ -150,7 +150,7 @@ Before you begin, ensure you have the following installed:
 * `POST /api/Requests`: Creates a new request. Expects JSON body: `{ "Description": "...", "WasteType": "...", "ContactInfo": "...", "Latitude": ..., "Longitude": ... }`.
 * `PUT /api/Requests/{id}/complete`: Marks the request with the specified ID as 'Completed'.
 
-## (Optional) Future Enhancements
+## Future Enhancements
 
 * Implement user authentication/authorization.
 * Add more robust error handling and retry logic (e.g., dead-letter queues in RabbitMQ).
