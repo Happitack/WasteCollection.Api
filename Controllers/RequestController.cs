@@ -19,11 +19,11 @@ public class RequestsController : ControllerBase
     public RequestsController(
         ApplicationDbContext context,
         IMessagePublisher messagePublisher,
-        ILogger<RequestsController> logger) // Inject ILogger
+        ILogger<RequestsController> logger) 
     {
         _context = context;
         _messagePublisher = messagePublisher;
-        _logger = logger; // Assign the injected logger to the field
+        _logger = logger; 
     }
 
     // GET: api/Requests
@@ -84,7 +84,7 @@ public class RequestsController : ControllerBase
         request.Id = 0;
         request.Status = RequestStatus.Pending;
         request.SubmittedAt = DateTime.UtcNow;
-        request.ProcessedAt = null; 
+        request.ProcessedAt = null;
 
         try
         {
