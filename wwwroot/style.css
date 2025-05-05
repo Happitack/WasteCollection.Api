@@ -54,13 +54,18 @@ h2 {
     color: #555;
 }
 
-#request-form input[type="text"] {
+#request-form input[type="text"],
+#request-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 1em;
+    background-color: white;
+    /* appearance: none; */
+    /* -webkit-appearance: none; */
+    /* -moz-appearance: none; */
 }
 
 #request-form input[type="text"]:focus {

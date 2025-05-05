@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const requestForm = document.getElementById('request-form');
     const descriptionInput = document.getElementById('description');
-    const wasteTypeInput = document.getElementById('waste-type');
+    const wasteTypeSelect = document.getElementById('waste-type');
     const contactInfoInput = document.getElementById('contact-info');
     const statusMessageDiv = document.getElementById('status-message');
     const requestsListDiv = document.getElementById('requests-list');
@@ -54,13 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
         statusMessageDiv.className = '';
 
         const description = descriptionInput.value.trim();
-        const wasteType = wasteTypeInput.value.trim();
+        const wasteType = wasteTypeSelect.value; 
         const contactInfo = contactInfoInput.value.trim(); 
-        const latitude = latitudeInput.value; // Get from hidden input
-        const longitude = longitudeInput.value; // Get from hidden input
+        const latitude = latitudeInput.value;
+        const longitude = longitudeInput.value;
 
-        if (!description || !wasteType) {
-            showStatusMessage('Description and Waste Type are required.', false);
+        if (!description || !wasteType) { 
+            showStatusMessage('Description and Waste Type selection are required.', false);
             return;
         }
 

@@ -26,7 +26,16 @@
             </div>
             <div>
                 <label for="waste-type">Waste Type:</label>
-                <input type="text" id="waste-type" name="wasteType" required maxlength="100">
+                <select id="waste-type" name="wasteType" required>
+                    <option value="">-- Select Waste Type --</option>
+                    <option value="General Waste">General Waste</option>
+                    <option value="Recycling (Paper/Card)">Recycling (Paper/Card)</option>
+                    <option value="Recycling (Plastic/Metal)">Recycling (Plastic/Metal)</option>
+                    <option value="Glass">Glass</option>
+                    <option value="Garden Waste">Garden Waste</option>
+                    <option value="Bulky Waste">Bulky Waste</option>
+                    <option value="Hazardous Waste">Hazardous Waste</option>
+                    </select>
             </div>
             <div>
                 <label for="contact-info">Contact Info (Optional):</label>
