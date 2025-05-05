@@ -4,8 +4,6 @@
 
 This is a full-stack web application designed to simulate a system for submitting and processing waste collection requests. Users can submit details about a waste collection need, including selecting the location on an interactive map. The request is then processed asynchronously in the background.
 
-This project serves as a practical demonstration of skills relevant to full-stack development roles, particularly those involving .NET backends, relational databases, asynchronous messaging, and web frontends. It incorporates technologies and patterns often found in modern web applications, specifically mirroring requirements found in certain job descriptions (e.g., C#, .NET, PostgreSQL, RabbitMQ, JS/HTML/CSS).
-
 ## Features
 
 * **Request Submission:** Users can submit waste collection requests via a web form.
