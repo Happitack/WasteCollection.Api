@@ -23,8 +23,6 @@ This is a full-stack web application designed to simulate a system for submittin
     * Entity Framework Core (EF Core)
     * PostgreSQL (Database)
     * RabbitMQ (Message Queue)
-    * RabbitMQ.Client (NuGet Package)
-    * Npgsql.EntityFrameworkCore.PostgreSQL (NuGet Package)
 * **Frontend:**
     * HTML5
     * CSS3
