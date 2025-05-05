@@ -1,8 +1,6 @@
 using System.Text;
 using RabbitMQ.Client;
 using WasteCollection.Api.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace WasteCollection.Api.Services;
 
