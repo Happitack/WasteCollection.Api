@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Collection Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Waste Collection Request</h1>
+
+        <form id="request-form">
+            <div>
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required maxlength="200">
+            </div>
+            <div>
+                <label for="waste-type">Waste Type:</label>
+                <input type="text" id="waste-type" name="wasteType" required maxlength="100">
+            </div>
+            <div>
+                <label for="contact-info">Contact Info (Optional):</label>
+                <input type="text" id="contact-info" name="contactInfo" maxlength="100">
+            </div>
+            <button type="submit">Submit Request</button>
+        </form>
+
+        <div id="status-message"></div>
+
+        <hr>
+    </div> 
+    <h2>Submitted Requests</h2>
+    <div class="table-wrapper">
+         <div id="requests-list">
+             <p>Loading requests...</p>
+             </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
