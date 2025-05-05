@@ -77,7 +77,7 @@ Before you begin, ensure you have the following installed:
         * Set the `Host`, `Port`, `Database`, `Username`, and `Password` to match the values you will use for the PostgreSQL container (see Docker Compose step below). The defaults used in the `docker-compose.yml` are typically `Host=localhost`, `Port=5432`, `Database=WasteCollectionDb`, `Username=wasteadmin`, `Password=your_strong_password`. **Choose a strong password.**
     * **Verify the `RabbitMQ` section**:
         * Ensure `HostName`, `Port`, `UserName`, and `Password` match the values for the RabbitMQ container. The defaults in the `docker-compose.yml` are typically `HostName=localhost`, `Port=5672`, `UserName=guest`, `Password=guest`.
-    * **Security Note:** Do *not* commit sensitive passwords directly into your Git repository if it's public. For real applications, use .NET User Secrets, environment variables, or a proper secrets management tool. For this local development setup, using `appsettings.Development.json` is acceptable if you use non-production passwords.
+    * **Security Note:** Do *not* commit sensitive passwords directly into your Git repository if it's public. 
 
 3.  **Run Backend Services (Database & Message Queue):**
     * Make sure Docker Desktop is running.
