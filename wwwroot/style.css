@@ -88,6 +88,18 @@ h2 {
     background-color: #e04e00;
 }
 
+#map {
+    height: 300px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+#coords-display {
+    font-size: 0.9em;
+    color: #666;
+}
+
 #status-message {
     margin-top: 20px;
     padding: 10px;

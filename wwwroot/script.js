@@ -6,9 +6,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactInfoInput = document.getElementById('contact-info');
     const statusMessageDiv = document.getElementById('status-message');
     const requestsListDiv = document.getElementById('requests-list');
+    const latitudeInput = document.getElementById('latitude');
+    const longitudeInput = document.getElementById('longitude');
+    const coordsDisplay = document.getElementById('coords-display');
 
     const apiUrl = '/api/Requests';
 
+    // --- Initialize Leaflet Map ---
+    const map = L.map('map').setView([55.6761, 12.5683], 13);
+    let marker = null;
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // --- Handle Map Click ---
+    map.on('click', function(e) {
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+        latitudeInput.value = lat.toFixed(6);
+        longitudeInput.value = lng.toFixed(6);
+        coordsDisplay.textContent = `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+
+        if (marker) {
+            map.removeLayer(marker);
+        }
+        marker = L.marker([lat, lng]).addTo(map);
+    });
+
+    // --- Function to display status messages ---
     function showStatusMessage(message, isSuccess) {
         statusMessageDiv.textContent = message;
         statusMessageDiv.className = isSuccess ? 'status-success' : 'status-error';
@@ -18,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000); 
     }
 
+    // --- Function to handle form submission ---
     async function handleFormSubmit(event) {
         event.preventDefault();
 
@@ -27,16 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const description = descriptionInput.value.trim();
         const wasteType = wasteTypeInput.value.trim();
         const contactInfo = contactInfoInput.value.trim(); 
+        const latitude = latitudeInput.value; // Get from hidden input
+        const longitude = longitudeInput.value; // Get from hidden input
 
         if (!description || !wasteType) {
             showStatusMessage('Description and Waste Type are required.', false);
             return;
         }
 
+        if (!latitude || !longitude) {
+            showStatusMessage('Please select a location on the map.', false);
+            return;
+        }
+
         const requestData = {
             Description: description, 
             WasteType: wasteType,
-            ContactInfo: contactInfo || null 
+            ContactInfo: contactInfo || null,
+            Latitude: parseFloat(latitude),
+            Longitude: parseFloat(longitude)
         };
 
         try {
@@ -52,6 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 showStatusMessage('Request submitted successfully!', true);
                 requestForm.reset();
+                latitudeInput.value = '';
+                longitudeInput.value = '';
+                coordsDisplay.textContent = 'No location selected';
+                if (marker) {
+                    map.removeLayer(marker);
+                    marker = null;
+                }
                 await fetchAndDisplayRequests();
             } else {
                 let errorMessage = `Error: ${response.status} ${response.statusText}`;
@@ -72,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Function to handle marking a request as complete ---
     async function handleMarkComplete(requestId) {
         console.log(`Attempting to mark request ${requestId} as complete.`); 
         statusMessageDiv.textContent = ''; 
@@ -133,6 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <th>ID</th>
                             <th>Description</th>
                             <th>Waste Type</th>
+                            <th>Lat</th>
+                            <th>Lng</th>
                             <th>Status</th>
                             <th>Submitted At</th>
                             <th>Processed At</th>
@@ -148,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const submittedDate = new Date(req.submittedAt).toLocaleString();
                 const processedDate = req.processedAt ? new Date(req.processedAt).toLocaleString() : 'N/A';
                 const statusText = statusMap[req.status] || 'Unknown';
-
+                const latText = req.latitude ? req.latitude.toFixed(4) : 'N/A';
+                const lngText = req.longitude ? req.longitude.toFixed(4) : 'N/A';
                 const isCompletable = req.status === 0 || req.status === 1;
                 const buttonHtml = isCompletable
                     ? `<button class="complete-button" data-id="${req.id}">Mark Complete</button>`
@@ -159,6 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${req.id}</td>
                         <td>${escapeHtml(req.description)}</td>
                         <td>${escapeHtml(req.wasteType)}</td>
+                        <td>${latText}</td>
+                        <td>${lngText}</td>                        
                         <td>${escapeHtml(statusText)}</td>
                         <td>${submittedDate}</td>
                         <td>${processedDate}</td>

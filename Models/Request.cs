@@ -25,6 +25,9 @@ public class Request
     [MaxLength(100)]
     public string? ContactInfo { get; set; }
 
+    public double? Latitude { get; set; }
+    public double? Longitude { get; set; }
+
     [Required]
     public RequestStatus Status { get; set; } = RequestStatus.Pending;
 
